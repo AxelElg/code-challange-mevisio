@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import multer from 'multer';
+import { Word } from './classes.js';
 
 const PORT = 8126;
 
@@ -16,13 +17,6 @@ app.use(
 app.use(express.json());
 
 app.post('/api/words', uploads.single('files'), (req: Request, res: Response) => {
-	class Word {
-		text: string;
-		value: number = 1;
-		constructor(s: string) {
-			this.text = s;
-		}
-	}
 	if (req.file && req.file.buffer.toString().length > 0) {
 		const stringList = req.file.buffer
 			.toString()
